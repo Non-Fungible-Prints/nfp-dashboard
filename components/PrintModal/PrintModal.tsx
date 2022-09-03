@@ -1,15 +1,21 @@
 import { Dialog } from '@headlessui/react';
 import React, { FC, useState } from 'react';
+import { useRamp } from '../../hooks/useRamp';
 import Modal from '../Modal/Modal';
 
 type PrintType = 'CHIP' | 'FIGURE';
 
 const PrintModal: FC<any> = ({ nftData, onClose }) => {
   const [ selectedOption, setSelectedOption ] = useState<PrintType | null>(null);
+  const { rampSDK } = useRamp();
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>, option: PrintType) => {
     if (e.key === ' ') {
       setSelectedOption(option);
     }
+  };
+
+  const initRampPay = () => {
+    rampSDK.show();
   };
 
   return (
@@ -45,7 +51,7 @@ const PrintModal: FC<any> = ({ nftData, onClose }) => {
         </div>
         <div className="flex flex-col w-full gap-y-2 xl:gap-x-4 pb-4">
           <button disabled={!selectedOption} type="button" className="button w-full mx-auto mb-4 rounded-md px-4 py-2 text-gray-200 bg-purple-700 hover:bg-purple-500 font-semibold">Create your NFP</button>
-          <button disabled={!selectedOption} type="button" className="button w-full flex flex-row justify-center align-center mx-auto mb-4 rounded-md px-4 py-2 text-gray-200 bg-gray-200 hover:bg-gray-300 font-semibold text-gray-900">
+          <button disabled={!selectedOption} onClick={initRampPay} type="button" className="button w-full flex flex-row justify-center align-center mx-auto mb-4 rounded-md px-4 py-2 text-gray-200 bg-gray-200 hover:bg-gray-300 font-semibold text-gray-900">
             Pay with Ramp.Network
             {' '}
             <img src="/images/ramp-logo-square-1000.png" alt="Ramp Logo" className="ml-2 h-6" />
