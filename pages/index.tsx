@@ -16,21 +16,21 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>NFP - Confirm</title>
+        <title>NFP</title>
         <meta name="viewport" content="initirn dal-scale=1.0, width=device-width" />
-        <meta name="title" content="NFP - Confirm" />
-        <meta name="description" content="NFP - Confirm" />
+        <meta name="title" content="NFP" />
+        <meta name="description" content="NFP" />
 
-        <meta property="og:title" content="NFP - Confirm" />
-        <meta property="og:site_name" content="NFP - Confirm" />
-        <meta property="og:description" content="NFP - Confirm" />
+        <meta property="og:title" content="NFP" />
+        <meta property="og:site_name" content="NFP" />
+        <meta property="og:description" content="NFP" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://www.nfp-confirm.com/logo.svg" />
         <meta property="og:url" content="https://www.nfp-confirm.com/" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="NFP - Confirm" />
-        <meta property="twitter:description" content="NFP - Confirm" />
+        <meta property="twitter:title" content="NFP" />
+        <meta property="twitter:description" content="NFP" />
         <meta property="twitter:image" content="https://www.nfp-confirm.com/logo.svg" />
         <meta property="twitter:url" content="https://www.nfp-confirm.com/" />
 
