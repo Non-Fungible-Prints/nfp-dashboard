@@ -11,7 +11,6 @@ export const Hero = () => (
             <a className="text-purple-700">PRINTS</a>
           </h1>
         </div>
-
       </div>
     </div>
   </SectionTemplate>

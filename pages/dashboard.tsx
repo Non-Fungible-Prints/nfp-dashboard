@@ -2,44 +2,16 @@
 /* eslint-disable react/jsx-key */
 import Head from 'next/head';
 import AOS from 'aos';
-import { useEffect, useState, useCallback } from 'react';
-import { Hero } from '../sections';
+import { useEffect } from 'react';
+import { Dashboard } from '../sections';
 import { Navbar } from '../components';
-import useAlchemy from '../hooks/useAlchemy';
-import { useEthers } from '@usedapp/core';
-import NFTTile from '../components/NFTTile/NFTTile';
 
 export default function Home() {
-    const [userNFTs, setUserNFTs] = useState([]);
-    const { getNFTFromWallet } = useAlchemy();
-    const { account } = useEthers();
     useEffect(() => {
         AOS.init({
             duration: 1000,
         });
     }, []);
-
-    useEffect(() => {
-        const getNfts = async () => account ? await getNFTFromWallet(account) : Promise.resolve(undefined);
-
-        getNfts().then(ans => {
-            if (ans) {
-                setUserNFTs(ans.ownedNfts.filter((nft: any) => !nft.error));
-            }
-        });
-
-    }, [account])
-
-    const renderNFTs = () => {
-        console.log('printNFT')
-        return (<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" >
-            <div className="group relative">
-                {userNFTs.map((nft: any) => <NFTTile key={nft.id.tokenId + nft.timeLastUpdated} nftData={nft} />)}
-            </div>
-        </div >)
-    }
-
-
     return (
         <>
             <Head>
@@ -69,12 +41,7 @@ export default function Home() {
             <Navbar />
 
             <main className="h-full bg-black">
-                <Hero />
-                <div>
-                    <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-                        {renderNFTs()}
-                    </div>
-                </div>
+                <Dashboard />
             </main>
         </>
     );
