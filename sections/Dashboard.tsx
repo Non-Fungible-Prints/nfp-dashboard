@@ -3,9 +3,13 @@ import { useEffect, useState } from 'react';
 import NFTTile from '../components/NFTTile/NFTTile';
 import useAlchemy from '../hooks/useAlchemy';
 import { SectionTemplate } from './SectionTemplate';
+import Modal from '../components/Modal/Modal';
+import PrintModal from '../components/PrintModal/PrintModal';
 
 export const Dashboard = () => {
   const [userNFTs, setUserNFTs] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedNFT, setSelectedNFT] = useState(null);
   const { getNFTFromWallet } = useAlchemy();
   const { account } = useEthers();
 
@@ -21,10 +25,9 @@ export const Dashboard = () => {
   }, [account])
 
   const renderNFTs = () => {
-    console.log('printNFT')
     return (<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" >
       <div className="group relative">
-        {userNFTs.map((nft: any) => <NFTTile key={nft.id.tokenId + nft.timeLastUpdated} nftData={nft} />)}
+        {userNFTs.map((nft: any) => <NFTTile key={nft.id.tokenId + nft.timeLastUpdated} nftData={nft} onClick={(nft) => setSelectedNFT(nft)}/>)}
       </div>
     </div >)
   }
@@ -39,13 +42,15 @@ export const Dashboard = () => {
             <a className="text-purple-700">PRINTS</a>
           </h1>
         </div>
-
+        <button className="button font-bold text-gray-200 mb-8" onClick={() => setOpenModal(true)}>Open Modal</button>
         <div>
           <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
             {renderNFTs()}
           </div>
         </div>
       </div>
+
+      {selectedNFT && <PrintModal nftData={selectedNFT} onClose={() => setSelectedNFT(null)}/>}
     </div>)
   </SectionTemplate>)
 };
