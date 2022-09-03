@@ -54,21 +54,12 @@ export const Navbar = () => (
             )}
           </Popover>
 
-          <Popover.Group as="nav" className="hidden md:flex space-x-8" />
+          <Popover.Group as="nav" className="hidden md:flex space-x-8 text-white">
+            <a href="/dashboard" className="cursor-pointer">Dashboard</a>
+            <a href="/nfps" className="cursor-pointer">NFPs</a>
+          </Popover.Group>
 
           <Popover.Group as="div" className="hidden md:flex justify-end space-x-8 lg:flex-1">
-            {/* <a href="#" target="_blank" rel="noopener noreferrer" className="my-auto">
-                <Image src="/discord.svg" width={30} height={30} />
-              </a>
-
-              <a href="#" target="_blank" rel="noopener noreferrer" className="my-auto">
-                <Image src="/twitter.svg" width={30} height={30} />
-              </a>
-
-              <a href="#" target="_blank" rel="noopener noreferrer" className="my-auto">
-                <Image src="/medium.svg" width={30} height={30} />
-              </a> */}
-
             <ConnectWallet />
           </Popover.Group>
         </div>
