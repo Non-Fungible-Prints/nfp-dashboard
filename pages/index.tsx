@@ -4,6 +4,7 @@ import Head from 'next/head';
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { Hero } from '../sections';
+import { Navbar } from '../components';
 
 export default function Home() {
   useEffect(() => {
@@ -37,6 +38,8 @@ export default function Home() {
 
         <link rel="icon" href="/logo.svg" type="image/svg+xml" />
       </Head>
+
+      <Navbar />
 
       <main className="h-full bg-black">
         <Hero />

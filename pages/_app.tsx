@@ -2,6 +2,22 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 
-const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />;
+import {
+  Mainnet, DAppProvider, Config, Mumbai,
+} from '@usedapp/core';
+import { getDefaultProvider } from 'ethers';
+
+const config: Config = {
+  readOnlyChainId: Mumbai.chainId,
+  readOnlyUrls: {
+    [Mumbai.chainId]: getDefaultProvider('mainnet'),
+  },
+};
+
+const MyApp = ({ Component, pageProps }: AppProps) => (
+  <DAppProvider config={config}>
+    <Component {...pageProps} />
+  </DAppProvider>
+);
 
 export default MyApp;
