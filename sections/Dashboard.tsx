@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import NFTTile from '../components/NFTTile/NFTTile';
 import useAlchemy from '../hooks/useAlchemy';
 import { SectionTemplate } from './SectionTemplate';
-import Modal from '../components/Modal/Modal';
 import PrintModal from '../components/PrintModal/PrintModal';
 
 export const Dashboard = () => {
@@ -14,7 +13,7 @@ export const Dashboard = () => {
   const { account } = useEthers();
 
   useEffect(() => {
-    const getNfts = async () => (account ? await getNFTFromWallet(account) : Promise.resolve(undefined));
+    const getNfts = async () => (account ? getNFTFromWallet(account) : Promise.resolve(undefined));
 
     getNfts().then((ans) => {
       if (ans) {
@@ -26,7 +25,7 @@ export const Dashboard = () => {
   const renderNFTs = () => (
     <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       <div className="group relative">
-        {userNFTs.map((nft: any) => <NFTTile key={nft.id.tokenId + nft.timeLastUpdated} nftData={nft} onClick={(nft) => setSelectedNFT(nft)} />)}
+        {userNFTs.map((nft: any) => <NFTTile key={nft.id.tokenId + nft.timeLastUpdated} nftData={nft} onClick={(n: any) => setSelectedNFT(n)} />)}
       </div>
     </div>
   );
@@ -43,7 +42,7 @@ export const Dashboard = () => {
             </h1>
           </div>
           <div>
-            <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="mx-auto max-w-2xl py-2 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
               {renderNFTs()}
             </div>
           </div>

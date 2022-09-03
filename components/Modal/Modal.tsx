@@ -22,7 +22,7 @@ const Modal: FC<Props> = ({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity" />
+        <div className="fixed inset-0 bg-black bg-opacity-75 transition-opacity" />
       </Transition.Child>
 
       <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -36,7 +36,7 @@ const Modal: FC<Props> = ({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <Dialog.Overlay className="relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <Dialog.Overlay className="relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-4 border-2 border-purple-700">
               <div className="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 {children}
               </div>
