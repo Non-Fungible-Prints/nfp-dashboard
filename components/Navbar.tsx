@@ -14,10 +14,7 @@ export const Navbar = () => (
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-6">
           <a href="#" className="flex justify-start lg:w-0 lg:flex-1 text-gray-200 font-semibold text-sm">
-            <Image src="/logo.svg" width={42} height={42} />
-            <div className="ml-2 my-auto">
-              <p>NFP</p>
-            </div>
+            <img alt="NFP logo" src="/images/nfp_logo.png" width={60} height={60} />
           </a>
 
           {/* HAMBURGER MENU */}

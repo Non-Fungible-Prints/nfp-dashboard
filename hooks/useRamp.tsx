@@ -1,9 +1,10 @@
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 
 export const useRamp = () => {
+  const hostUrl = () => `${window?.location.origin}/images/nfp_logo.png`;
   const rampSDK = new RampInstantSDK({
     hostAppName: 'Non Fungible Prints',
-    hostLogoUrl: 'https://rampnetwork.github.io/assets/misc/test-logo.png',
+    hostLogoUrl: hostUrl(),
     defaultAsset: 'MATIC_MATIC',
   });
 
