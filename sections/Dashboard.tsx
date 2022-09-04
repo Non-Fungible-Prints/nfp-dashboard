@@ -1,4 +1,4 @@
-import { useEthers } from '@usedapp/core';
+import { useContractFunction, useEthers } from '@usedapp/core';
 import { useEffect, useState } from 'react';
 import NFTTile from '../components/NFTTile/NFTTile';
 import useAlchemy from '../hooks/useAlchemy';

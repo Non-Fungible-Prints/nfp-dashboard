@@ -1,11 +1,18 @@
 import { Dialog } from '@headlessui/react';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import {
+  useContractFunction, useSendTransaction, TransactionStatus, TransactionState,
+} from '@usedapp/core';
+import { utils } from 'ethers';
 import { useRamp } from '../../hooks/useRamp';
 import Modal from '../Modal/Modal';
+import useContract from '../../hooks/useContract';
 
 type PrintType = 'CHIP' | 'FIGURE';
 
 const PrintModal: FC<any> = ({ nftData, onClose }) => {
+  const contract = useContract();
+  // const [ contract, setContract ] = useState<any>({});
   const [ selectedOption, setSelectedOption ] = useState<PrintType | null>(null);
   const { rampSDK } = useRamp();
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>, option: PrintType) => {
@@ -14,9 +21,20 @@ const PrintModal: FC<any> = ({ nftData, onClose }) => {
     }
   };
 
+  const { state, send: printNFC } = useContractFunction(contract, 'printNFC', {
+    gasLimitBufferPercentage: 10,
+  });
+
   const initRampPay = () => {
     rampSDK.show();
   };
+  const printNFCTransaction = (nft: any) => {
+    printNFC(nft.contract.address, parseInt(nft.id.tokenId, 16), { value: utils.parseEther('0.0001') });
+  };
+
+  useEffect(() => {
+    window.open('https://forms.gle/hk6KsnJvr1bH7ptb9', '_blank', 'noopener,noreferrer');
+  }, [ state ]);
 
   return (
     <Modal open={!!nftData} onClose={onClose}>
@@ -50,7 +68,8 @@ const PrintModal: FC<any> = ({ nftData, onClose }) => {
           </div>
         </div>
         <div className="flex flex-col w-full gap-y-2 xl:gap-x-4 pb-4">
-          <button disabled={!selectedOption} type="button" className="button w-full mx-auto mb-4 rounded-md px-4 py-2 text-gray-200 bg-purple-700 hover:bg-purple-500 font-semibold">Create your NFP</button>
+          <button disabled={!selectedOption} onClick={() => printNFCTransaction(nftData)} type="button" className="button w-full mx-auto mb-4 rounded-md px-4 py-2 text-gray-200 bg-purple-700 hover:bg-purple-500 font-semibold">Create your NFP</button>
+
           <button disabled={!selectedOption} onClick={initRampPay} type="button" className="button w-full flex flex-row justify-center align-center mx-auto mb-4 rounded-md px-4 py-2 text-gray-200 bg-gray-200 hover:bg-gray-300 font-semibold text-gray-900">
             Pay with Ramp.Network
             {' '}
