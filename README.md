@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>
+<p align="center">
+<img src="https://avatars.githubusercontent.com/u/112724665?s=200&v=4" width="150" height="150">
+  <br>Non Fungible Prints
+</h1>
+  <p align="center">
+    Your digital asset in Physical World
+    <br />
+    </p>
+</p>
+</br>
+</br>
 
-## Getting Started
+## About The Project
 
-First, run the development server:
+Non Fungible Prints is a platform that turns any kind of NFT into a physical object, which can be either a key ring or a figure. Every objects that represents the NFT token, has also printed NFC chip on it, which stores info about the NFT, and later on can work as a physical token for identification.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+The platform works in the following way:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. User connects wallet to the dapp
+2. Available NFT tokens on the given account are displayed in the dashboard, and user is able to place an order to "print" physical representation of the given NFT
+3. User selects the form of the print (key ring or figure)
+4. User pays for the service, printing, and the shipping costs
+5. Once the physical token is ready, user can set it's status as active or inactive
+6. State of the physical token can be then verified by anyone, on the dedicated app
+7. Token can be sold with the NFT or kept, but only the owner of the NFT can change it's state
+## Tech stack
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The smart contracts are built with Solidity and deployed to the Polygon Mumbai network. The Graph is used to query the data from the smart contract, so that anyone can verify the physical token, without a need to connect wallet.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Built With
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Hardhat](https://hardhat.org/)
+- [Solidity](https://docs.soliditylang.org/en/v0.8.11/)
+- [Alchemy](https://www.alchemy.com/)
+- [React](https://reactjs.org/)
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- [Node.js](https://nodejs.org/en/download/)
+- [Metmask](https://metamask.io/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Install all the dependencies - `yarn`
+2. Run `yarn run start`
