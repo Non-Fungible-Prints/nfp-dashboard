@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { Hero } from '../sections';
+import { Nfps } from '../sections';
 import { Navbar } from '../components';
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
       <Navbar />
 
       <main className="h-full bg-black">
-        <Hero />
+        <Nfps />
 
       </main>
     </>
