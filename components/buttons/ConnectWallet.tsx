@@ -8,15 +8,16 @@ import Web3Modal from 'web3modal';
 export const ConnectWallet = () => {
   const { account, activate, deactivate } = useEthers();
   const { ens } = useLookupAddress(account);
-  const [ activateError, setActivateError ] = useState('');
+  const [activateError, setActivateError] = useState('');
   const { error } = useEthers();
+
   useEffect(() => {
     if (error && account) {
       setActivateError(error.message);
       return;
     }
     setActivateError('');
-  }, [ error, account ]);
+  }, [error, account]);
 
   const activateProvider = async () => {
     const providerOptions = {
@@ -40,6 +41,13 @@ export const ConnectWallet = () => {
       setActivateError(error.message);
     }
   };
+  useEffect(() => {
+    const initProvider = async () => activateProvider();
+
+    if (!account) {
+      initProvider();
+    }
+  }, []);
 
   return (
     <div className="p-4 text-white flex flex-row">
