@@ -1,0 +1,187 @@
+[
+  { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "string", "name": "nfcTag", "type": "string" },
+      {
+        "components": [
+          { "internalType": "address", "name": "nftAddress", "type": "address" },
+          { "internalType": "uint256", "name": "nftId", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" },
+          { "internalType": "bool", "name": "isDestroyed", "type": "bool" },
+          { "internalType": "string", "name": "nftName", "type": "string" },
+          { "internalType": "string", "name": "nftUri", "type": "string" },
+          { "internalType": "uint256", "name": "lastUpdated", "type": "uint256" }
+        ],
+        "indexed": false,
+        "internalType": "struct DataTypes.NFTInfo",
+        "name": "nftInfo",
+        "type": "tuple"
+      }
+    ],
+    "name": "NFCDestroyed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "newPrice", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "updateTime", "type": "uint256" }
+    ],
+    "name": "NFCPriceChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "string", "name": "nfcTag", "type": "string" },
+      {
+        "components": [
+          { "internalType": "address", "name": "nftAddress", "type": "address" },
+          { "internalType": "uint256", "name": "nftId", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" },
+          { "internalType": "bool", "name": "isDestroyed", "type": "bool" },
+          { "internalType": "string", "name": "nftName", "type": "string" },
+          { "internalType": "string", "name": "nftUri", "type": "string" },
+          { "internalType": "uint256", "name": "lastUpdated", "type": "uint256" }
+        ],
+        "indexed": false,
+        "internalType": "struct DataTypes.NFTInfo",
+        "name": "nftInfo",
+        "type": "tuple"
+      },
+      { "indexed": false, "internalType": "address", "name": "nftOwnerAddress", "type": "address" }
+    ],
+    "name": "NFCPrinted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "string", "name": "nfcTag", "type": "string" },
+      {
+        "components": [
+          { "internalType": "address", "name": "nftAddress", "type": "address" },
+          { "internalType": "uint256", "name": "nftId", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" },
+          { "internalType": "bool", "name": "isDestroyed", "type": "bool" },
+          { "internalType": "string", "name": "nftName", "type": "string" },
+          { "internalType": "string", "name": "nftUri", "type": "string" },
+          { "internalType": "uint256", "name": "lastUpdated", "type": "uint256" }
+        ],
+        "indexed": false,
+        "internalType": "struct DataTypes.NFTInfo",
+        "name": "nftInfo",
+        "type": "tuple"
+      }
+    ],
+    "name": "NFCStatusChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_nfcTag", "type": "string" },
+      { "internalType": "address", "name": "_nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "_nftId", "type": "uint256" }
+    ],
+    "name": "changeNFCState",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_nfcTag", "type": "string" },
+      { "internalType": "address", "name": "_nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "_nftId", "type": "uint256" }
+    ],
+    "name": "destroyNFC",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "_nfcTag", "type": "string" }],
+    "name": "getNFCStatus",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "name": "nfcsRegistered",
+    "outputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "nftId", "type": "uint256" },
+      { "internalType": "bool", "name": "isActive", "type": "bool" },
+      { "internalType": "bool", "name": "isDestroyed", "type": "bool" },
+      { "internalType": "string", "name": "nftName", "type": "string" },
+      { "internalType": "string", "name": "nftUri", "type": "string" },
+      { "internalType": "uint256", "name": "lastUpdated", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "_nftId", "type": "uint256" }
+    ],
+    "name": "printNFC",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "printingCost",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_newPritingCost", "type": "uint256" }],
+    "name": "setPrintingCost",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

@@ -4,7 +4,6 @@ import { useEthers } from '@usedapp/core';
 import { useEffect, useState } from 'react';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import { Switch } from '@headlessui/react';
-import NFTTile from '../components/NFTTile/NFTTile';
 import useAlchemy from '../hooks/useAlchemy';
 import { SectionTemplate } from './SectionTemplate';
 import PrintModal from '../components/PrintModal/PrintModal';
@@ -26,12 +25,22 @@ export const Nfps = () => {
         .query(getNFCStatusChanged, { first: 1000 })
         .toPromise();
 
-      if (getNfps.data && getNfps.data.nfcprinteds) {
-        const allNfps = getNfps.data.nfcprinteds;
+      if (getNfps.data && getNfps.data.nfcstatusChangeds) {
+        const allNfps = getNfps.data.nfcstatusChangeds;
         const userNfts = userNFTs.map((nft) => nft!.contract!.address!);
-        console.log(userNfts);
-        // eslint-disable-next-line no-shadow
-        const uNfps = allNfps.filter((nfp) => userNfts.includes(nfp.nftInfo_nftAddress));
+
+        let uNfps = allNfps.sort((a: any, b: any): any => {
+          if (parseInt(a.nftInfo_lastUpdated, 10) > parseInt(b.nftInfo_lastUpdated, 10)) {
+            return -1;
+          }
+
+          return 0;
+        }).filter((nfp: any) => userNfts.includes(nfp.nftInfo_nftAddress));
+
+        uNfps = uNfps.filter((value: any, index: any, self: any) => index === self.findIndex((t) => (
+          t.nftInfo_nftAddress === value.nftInfo_nftAddress
+        )));
+
         setUserNfps(uNfps);
         console.log({ uNfps });
       }
